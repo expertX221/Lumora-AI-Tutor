@@ -76,3 +76,11 @@ Every installed frontend library has a runtime role:
 | Vite (development) | Local development and production bundling |
 
 Tripo authentication was retried, but the account returned 0 available and 0 frozen credits. No paid generation was submitted. `tripoModel` remains optional and empty.
+
+## Physics experiment and layout safeguards
+
+The 3D Lab now includes a frictionless trolley experiment with force (0–16 N), mass (1–8 kg), a user-started three-second run, and acceleration/velocity/displacement readouts. Its numerical model uses F = ma, v = at and s = ½at² from rest. Visual distance uses a fixed 0.1 scale; at the maximum control values the trolley still fits the track. The experiment does not update learner mastery, and links to assessed practice for Newton's second law.
+
+Hero copy and WebGL are separate grid cells. On small screens the scene moves below the text. Canvases fit their own measured containers, camera distance adapts to aspect ratio, tooltips are clamped inside their scene, and only the active graph label is shown. Tables scroll inside their card; grids use zero minimum widths and controls wrap. Card hover effects change lighting rather than moving the page layout.
+
+The signed-in Tripo Studio account shows 200 Studio credits. Tripo documents Studio and API as separate credit systems. The inspected Studio flow displayed a 55-credit generation and an export-upgrade requirement, so no Studio credits were spent against the earlier 30-credit authorization.
