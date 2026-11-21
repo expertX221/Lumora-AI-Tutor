@@ -55,3 +55,24 @@ Spline orbital sculpture: https://my.spline.design/lumoraknowledgeobservatory-NG
 Topview visual reference Canvas: https://www.topview.ai/canvas/91a1a2d3baad42e6b4eecebbdd19ec07
 
 The Spline scene is available in the 3D Lab under Orbital sculpture and loads from Spline only when selected. Asset integration is configured in `src/assets.json`. The application remains usable if optional external assets cannot load.
+
+## Blender asset and dependency roles
+
+The homepage learning core is modeled in Blender 5.2.3 and exported to `public/assets/lumora-blender-core.glb`. Its authored titanium, lime-emissive, and pearl materials are preserved in Three.js. The web asset has 9,320 triangles and is about 231 KiB. `assets-src/build_lumora_core.py` regenerates the GLB, editable `.blend` source, and studio preview through Blender's background Python API. It creates a separate scene and does not change an open Blender document. The primitive core remains a loading/error fallback.
+
+Every installed frontend library has a runtime role:
+
+| Dependency | Where it is used |
+| --- | --- |
+| React / React DOM | Learner state, views, controls, rendering |
+| Three.js | Blender GLB loader, interactive universe and mastery columns |
+| GSAP | Camera focus and mastery-column transitions |
+| Framer Motion | Page and hero entrances, respecting reduced motion |
+| Anime.js | Animated mastery counter updates |
+| D3 | Continuous mastery-to-color scale |
+| Cytoscape.js | The 2D prerequisite map toggle |
+| Chart.js | The teacher dashboard's 2D bar-chart toggle |
+| Lucide React | Navigation and interaction icons |
+| Vite (development) | Local development and production bundling |
+
+Tripo authentication was retried, but the account returned 0 available and 0 frozen credits. No paid generation was submitted. `tripoModel` remains optional and empty.
