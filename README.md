@@ -43,3 +43,15 @@ Import this repository in Vercel. The framework is Vite, build command is `npm r
 ## Stack
 
 React, Vite, Three.js (hero concept sculpture), Cytoscape.js (prerequisite graph), Chart.js (class mastery), Framer Motion (page entrance), Lucide icons. Responsive layout, keyboard-operable controls, reduced-motion support.
+
+## Interactive 3D redesign
+
+Midnight black, white, and lime theme. Three.js renders a draggable learning core, a selectable 12-concept universe, and 3D class-mastery columns. All 3D views include pause and camera-reset controls; full concept views can be expanded. The 2D Cytoscape prerequisite graph and Chart.js bar chart remain available as alternatives. Concept dropdowns and chips support keyboard selection; a WebGL failure shows an accessible concept list.
+
+GSAP eases the camera between selected concepts, Anime.js animates mastery counters, D3 maps mastery to colors, and Framer Motion handles page entrances with reduced-motion support. Animation rendering is capped at 40fps, stops work when offscreen or in a hidden tab, and caps pixel density. GPU resources are released when the view is closed.
+
+Spline orbital sculpture: https://my.spline.design/lumoraknowledgeobservatory-NGyIUcqnnJ7YqsxWDqYWWivn/
+
+Topview visual reference Canvas: https://www.topview.ai/canvas/91a1a2d3baad42e6b4eecebbdd19ec07
+
+The Spline scene is available in the 3D Lab under Orbital sculpture and loads from Spline only when selected. Asset integration is configured in `src/assets.json`. The application remains usable if optional external assets cannot load.
