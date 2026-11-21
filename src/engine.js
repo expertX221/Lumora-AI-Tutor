@@ -35,7 +35,7 @@ function rawQuestion(id, mastery=0.3, variant=0){
  if(id==='equations'){prompt=`Initial velocity is ${n} m/s and constant acceleration is ${a} m/s². Find velocity after ${n} s.`;answer=n+a*n;unit='m/s';}
  if(id==='newton'){prompt=`What net force accelerates a ${n} kg object at ${a} m/s²?`;answer=n*a;unit='N';}
  if(id==='momentum'){prompt=`Find the momentum of a ${n} kg object moving east at ${a} m/s.`;answer=n*a;unit='kg·m/s east';}
- const opts=[answer,answer+a,answer-a,answer+2*a].map(v=>`${v} ${unit}`); return {id,prompt,options:opts,correct:0,level,explanation:b[3],pattern:b[4]};
+ const opts=[answer,answer+a,answer-a,answer+2*a].map(v=>`${v} ${unit}`); return {id,prompt,options:opts,correct:0,level,explanation:`${concepts[i].lesson} For these values, the answer is ${answer} ${unit}.`,pattern:b[4]};
  }
  return {id,prompt:level==='Challenge'?b[0]+' Explain the governing principle and why an alternative is incorrect.':b[0],options:b[1],correct:b[2],level,explanation:b[3],pattern:b[4]};
 }
