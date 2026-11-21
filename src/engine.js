@@ -35,7 +35,22 @@ function rawQuestion(id, mastery=0.3, variant=0){
  if(id==='equations'){prompt=`Initial velocity is ${n} m/s and constant acceleration is ${a} m/s². Find velocity after ${n} s.`;answer=n+a*n;unit='m/s';}
  if(id==='newton'){prompt=`What net force accelerates a ${n} kg object at ${a} m/s²?`;answer=n*a;unit='N';}
  if(id==='momentum'){prompt=`Find the momentum of a ${n} kg object moving east at ${a} m/s.`;answer=n*a;unit='kg·m/s east';}
- const opts=[answer,answer+a,answer-a,answer+2*a].map(v=>`${v} ${unit}`); return {id,prompt,options:opts,correct:0,level,explanation:`${concepts[i].lesson} For these values, the answer is ${answer} ${unit}.`,pattern:b[4]};
+ let principle=concepts[i].lesson;
+ if(mastery>=.4&&mastery<.7){
+ if(id==='speed'){prompt=`A cyclist travels ${n*a/1000} km in ${a} seconds. Find average speed in m/s.`;answer=n;principle='Convert kilometres to metres, then divide total distance by time.';}
+ if(id==='acceleration'){prompt=`A vehicle changes velocity from ${n*a} to 0 m/s in ${a} minutes. Find acceleration in m/s², rounded to two decimal places.`;answer=Number((-n/60).toFixed(2));principle='Convert minutes to seconds. Acceleration = (final velocity − initial velocity) / elapsed seconds.';}
+ if(id==='newton'){prompt=`A ${n} kg trolley speeds up from rest to ${a*n} m/s in ${n} s. Find the net force.`;answer=n*a;principle='First calculate acceleration from change in velocity divided by time, then use F = ma.';}
+ if(id==='equations'){prompt=`An object starts at ${n} m/s with constant acceleration ${a} m/s² for 2 s. Find its displacement.`;answer=2*n+2*a;unit='m';principle='Under constant acceleration, displacement s = ut + ½at².';}
+ if(id==='momentum'){prompt=`A ${n*1000} g ball moves east at ${a} m/s. Find momentum in kg·m/s.`;answer=n*a;principle='Convert grams to kilograms, then multiply mass by velocity and include direction.';}
+ }
+ if(mastery>=.7){
+ if(id==='speed'){prompt=`A runner covers ${n*a} m in ${a} s, rests ${a} s, then returns the same distance in ${a} s. Find average speed for the whole trip, rounded to two decimals.`;answer=Number((2*n/3).toFixed(2));principle='Average speed = total distance / total time, including rest time. Do not use zero net displacement.';}
+ if(id==='acceleration'){prompt=`A ball moving east at ${n*a} m/s reverses to move west at ${n*a} m/s in ${a} s. Taking east as positive, find average acceleration.`;answer=-2*n;principle='Assign west a negative velocity, then use (v − u) / t. Reversal changes velocity by twice the original magnitude.';}
+ if(id==='newton'){prompt=`A ${n} kg trolley must accelerate at ${a} m/s² against ${a} N of friction. What applied forward force is required?`;answer=n*a+a;principle='Applied force minus friction equals the net force ma. Add friction to ma to find the applied force.';}
+ if(id==='equations'){prompt=`A car initially moves at ${2*n} m/s and brakes with constant acceleration −2 m/s² until it stops. Find stopping distance.`;answer=n*n;unit='m';principle='Use v² = u² + 2as with final velocity zero. Stopping distance is −u²/(2a).';}
+ if(id==='momentum'){prompt=`A ${n+1} kg ball moves east at ${a} m/s while a 1 kg ball moves west at ${a} m/s. Find their total momentum.`;answer=n*a;principle='Add signed momenta. East is positive and west is negative, so total momentum = (n + 1)a − a.';}
+ }
+ const opts=[answer,answer+a,answer-a,answer+2*a].map(v=>`${Number(v.toFixed(2))} ${unit}`); return {id,prompt,options:opts,correct:0,level,explanation:`${principle} For these values, the answer is ${answer} ${unit}.`,pattern:b[4]};
  }
  return {id,prompt:level==='Challenge'?b[0]+' Explain the governing principle and why an alternative is incorrect.':b[0],options:b[1],correct:b[2],level,explanation:b[3],pattern:b[4]};
 }
